@@ -64,12 +64,15 @@ for user in users:
             }
         )
 
+# put array into pandas dataframe
 df = pd.DataFrame(user_data)
 
+# seperate string by ',' seperator
 df["GroupPermission"] = df["GroupPermission"].str.split(",")
 df["GroupName"] = df["GroupName"].str.split(",")
 df["UserPermission"] = df["UserPermission"].str.split(",")
 
+# multiline explode which are in different sizes
 df1 = (
     df.apply(
         lambda x: list(
@@ -85,7 +88,9 @@ df1 = (
     .fillna("")
 )
 
+# join user with other exploded datas
 df = df[["User"]].join(df1)
 
+# save to excel
 excel_file = profile_name + "_output.xlsx"
 df.to_excel(excel_file, index=False)
