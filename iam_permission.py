@@ -2,6 +2,8 @@ import boto3
 import pandas as pd
 from itertools import zip_longest
 
+## Todo profile을 선택할 수 있도록 prompt를 구성
+
 # input profile
 profile_name = input("enter profile name: ")
 session = boto3.Session(profile_name=profile_name)
